@@ -1,0 +1,113 @@
+{
+  "id": "ID",
+  "UI Elements": "UI元素",
+  "apps": "应用",
+  "dashboard": "仪表盘",
+  "chat": "聊天",
+  "calendar": "日历",
+  "card": "卡片",
+  "widgets": "组件",
+  "auth": "认证",
+  "login": "登录",
+  "register": "注册",
+  "form": "表单",
+  "table": "表格",
+  "chart": "图表",
+  "Create account": "创建账户",
+  "password": "密码",
+  "username": "用户名",
+  "email": "邮箱",
+  "sign_in": "登录",
+  "sign_up": "注册",
+  "remember": "记住",
+  "forget_pass": "忘记密码",
+  "username required": "请输入用户名",
+  "password required": "请输入密码",
+  "have_account": "已经有账户",
+  "view": "查看",
+  "edit": "编辑",
+  "delete": "删除",
+  "role": "角色",
+  "status": "状态",
+  "apply": "应用",
+  "reset": "重置",
+  "avatar": "图像",
+  "action": "操作",
+  "sales_overview": "销售统计",
+  "yearly_breakup": "年度统计",
+  "monthly_earnings": "月度收入",
+  "recent_transactions": "最近交易",
+  "recent_task": "最近任务",
+  "last_year": "去年",
+  "name": "用户名",
+  "position": "职位",
+  "project": "项目",
+  "recent": "最近",
+  "contact": "联系人",
+  "add_event": "添加事件",
+  "filter": "过滤",
+  "view_all": "查看所有",
+  "personal": "个人",
+  "business": "商业",
+  "family": "家庭",
+  "holiday": "节日",
+  "meeting": "会议",
+  "profile": "资料",
+  "$vuetify": {
+    "loading": "加载中",
+    "open": "打开",
+    "close": "关闭",
+    "badge": "徽章",
+    "datePicker": {
+      "itemsSelected": "'{0} selected'",
+      "range": {
+        "title": "Select dates",
+        "header": "Enter dates"
+      },
+      "title": "Select date",
+      "header": "Enter date",
+      "input": {
+        "placeholder": "Enter date"
+      }
+    },
+    "dataIterator": {
+      "loadingText": "加载中"
+    },
+    "dataFooter": {
+      "pageText": "{0}-{1} 共 {2}",
+      "firstPage": "首页",
+      "lastPage": "尾页",
+      "prevPage": "上一页",
+      "nextPage": "下一页",
+      "itemsPerPageText": "每页数目：",
+      "itemsPerPageAll": "所有"
+    },
+    "pagination": {
+      "ariaLabel": {
+        "root": "root",
+        "previous": "previous",
+        "next": "next",
+        "currentPage": "currentPage",
+        "page": "page"
+      }
+    },
+    "input": {
+      "clear": "clear",
+      "appendAction": "appendAction",
+      "prependAction": "prependAction",
+      "counterSize": "counterSize"
+    },
+    "fileInput": {
+      "counterSize": "counterSize"
+    },
+    "rating": {
+      "ariaLabel": {
+        "item": "item"
+      }
+    }
+  },
+  "10": "10",
+  "25": "25",
+  "50": "50",
+  "100": "100"
+}

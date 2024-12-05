@@ -1,0 +1,113 @@
+{
+  "id": "ID",
+  "UI Elements": "UI Elements",
+  "apps": "apps",
+  "dashboard": "dashboard",
+  "chat": "chat",
+  "calendar": "calendar",
+  "card": "card",
+  "widgets": "widgets",
+  "auth": "auth",
+  "login": "login",
+  "register": "register",
+  "form": "form",
+  "table": "table",
+  "chart": "chart",
+  "Create account": "create account",
+  "password": "password",
+  "username": "username",
+  "email": "email",
+  "sign_in": "sign in",
+  "sign_up": "sign up",
+  "remember": "remember",
+  "forget_pass": "forgot password",
+  "username required": "username required",
+  "password required": "password required",
+  "have_account": "already have account",
+  "view": "view",
+  "edit": "edit",
+  "delete": "delete",
+  "role": "role",
+  "status": "status",
+  "apply": "apply",
+  "reset": "reset",
+  "avatar": "avatar",
+  "action": "action",
+  "sales_overview": "sales overview",
+  "yearly_breakup": "yearly breakup",
+  "monthly_earnings": "monthly earnings",
+  "recent_transactions": "recent transactions",
+  "recent_task": "recent task",
+  "last_year": "last year",
+  "name": "name",
+  "position": "position",
+  "project": "project",
+  "recent": "recent",
+  "contact": "contact",
+  "add_event": "add event",
+  "filter": "filter",
+  "view_all": "view all",
+  "personal": "perosnal",
+  "business": "business",
+  "family": "family",
+  "holiday": "holiday",
+  "meeting": "meeting",
+  "profile": "profile",
+  "$vuetify": {
+    "loading": "loading",
+    "open": "open",
+    "close": "close",
+    "badge": "badge",
+    "datePicker": {
+      "itemsSelected": "'{0} selected'",
+      "range": {
+        "title": "Select dates",
+        "header": "Enter dates"
+      },
+      "title": "Select date",
+      "header": "Enter date",
+      "input": {
+        "placeholder": "Enter date"
+      }
+    },
+    "dataIterator": {
+      "loadingText": "loading"
+    },
+    "dataFooter": {
+      "pageText": "{0}-{1} 共 {2}",
+      "firstPage": "First Page",
+      "lastPage": "Last Page",
+      "prevPage": "Previous Page",
+      "nextPage": "Next Page",
+      "itemsPerPageText": "Items:",
+      "itemsPerPageAll": "All"
+    },
+    "pagination": {
+      "ariaLabel": {
+        "root": "root",
+        "previous": "previous",
+        "next": "next",
+        "currentPage": "currentPage",
+        "page": "page"
+      }
+    },
+    "input": {
+      "clear": "clear",
+      "appendAction": "appendAction",
+      "prependAction": "prependAction",
+      "counterSize": "counterSize"
+    },
+    "fileInput": {
+      "counterSize": "counterSize"
+    },
+    "rating": {
+      "ariaLabel": {
+        "item": "item"
+      }
+    }
+  },
+  "10": "10",
+  "25": "25",
+  "50": "50",
+  "100": "100"
+}
