@@ -67,6 +67,7 @@ return [
             'schema' => env('DB_IMAGE_SCHEMA', 'meghnautcmsrhdimage'),
         ],
 
+       
 //        'mysql' => [
 //            'driver' => 'mysql',
 //            'url' => env('DATABASE_URL'),

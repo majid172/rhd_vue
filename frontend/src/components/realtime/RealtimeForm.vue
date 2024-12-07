@@ -23,7 +23,7 @@ onMounted(()=>{
                               <label for="defaultSelect" class="form-label">Bridge Select</label>
                               <select id="defaultSelect" class="form-select" v-model="realtimeStore.inputField.selectedBridgeId">
                                 <option>Choose Bridge</option>
-                                <option v-for="(bridge, index) in bridgeStore.bridges" :key="index" :value="bridge.id">
+                                <option v-for="(bridge, index) in bridgeStore.bridges" :key="index" :value="bridge.id" @change="bridgeStore.showPlaza">
                                   {{ bridge.bridge_name }}
                                 </option>
 

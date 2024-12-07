@@ -9,6 +9,11 @@ export const useBridgeStore = defineStore('bridge',{
       const {data} = await axios.get('http://127.0.0.1:8000/api/summary/daily/report');
       this.bridges = data;
 
+    },
+
+    async showPlaza()
+    {
+      console.log('plaza name');
     }
   }
 })

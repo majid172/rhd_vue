@@ -10,6 +10,7 @@ use App\Models\Bridge;
 use Illuminate\Support\Facades\Validator;
 use App\Helpers\PlazaHelper;
 use App\Models\AllTransaction;
+use App\Models\Image;
 use Carbon\Carbon;
 
 class RealtimeDataController extends Controller
@@ -68,9 +69,16 @@ class RealtimeDataController extends Controller
         ->whereDate('created_at', $today)
         ->sum('amount');
 
+
     $transactions = $this->getTrxData($plazaIds,$plazaName);
-return $transactions;
-     return view('realtime.realtimeDataShow', compact('transactions','total_toll','total_etc','bridgeName','plazaName'));
+    return response()->json([
+        'transactions'=>$transactions,
+        'total_toll' => $total_toll,
+        'total_etc' => $total_etc,
+        'bridgeName' => $bridgeName,
+        'plazaName' => $plazaName
+    ]);
+
    }
 
       public function getTrxData($plazaIds, $plazaName)
@@ -82,9 +90,10 @@ return $transactions;
     ->where('is_active', 1)
     ->whereDate('created_at', Carbon::today())
     ->groupBy('lane_no');
-    
 
-    $transactions = AllTransaction::with(['image', 'user'])
+
+
+    $transactions = AllTransaction::with(['user'])
     ->joinSub($subquery, 'latest_trx', function($join) {
         $join->on('ALL_TRANSACTIONS_TB.lane_no', '=', 'latest_trx.lane_no')
              ->on('ALL_TRANSACTIONS_TB.created_at', '=', 'latest_trx.latest_created_at');
