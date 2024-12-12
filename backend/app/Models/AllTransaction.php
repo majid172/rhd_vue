@@ -18,10 +18,11 @@ class AllTransaction extends Model
 //        return $this->belongsTo(MeghnaVehicleReg::class, 'vehicle_id', 'vehicle_reg_id');
 //    }
 
-   public function image()
-   {
-       return $this->belongsTo(Image::class, 'image_name', 'image_name');
-   }
+    public function image()
+    {
+        return $this->belongsTo(Image::class, 'image_name', 'image_name'); // Adjust as necessary
+    }
+
 
     public function plaza()
     {

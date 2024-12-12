@@ -24,6 +24,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::controller(RealtimeDataController::class)->prefix('realtime')->group(function(){
     Route::get('/request','realtimeRequest');
     Route::post('/show','realTimeShow');
+    Route::post('/lanewise/show','laneShow');
 });
 Route::get('/realtime',[RealtimeDataController::class,'index']);
 

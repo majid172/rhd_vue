@@ -13,7 +13,7 @@ onMounted(()=>{
   <div class="container-xxl flex-grow-1 container-p-y">
     <div class="card mb-6">
       <div class="card-header d-flex justify-content-between align-items-center">
-        <h5 class="mb-0">Report Form</h5>
+        <h5 class="mb-0">Lane Report Form</h5>
       </div>
       <div class="card-body">
         <form>
@@ -62,7 +62,7 @@ onMounted(()=>{
           <div class="row">
             <div class="col-lg-6">
               <div class="mb-4">
-                <label for="html5-time-input" class="col-md-2 col-form-label">Start Time</label>
+                <label for="html5-time-input" class="col-md-2 col-form-label">Star Time</label>
                 <div class="col-md-10">
                   <input class="form-control" type="time" value="12:30:00" id="html5-time-input"
                          v-model="dailySummaryStore.inputField.inputStartTime">

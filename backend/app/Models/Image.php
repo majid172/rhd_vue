@@ -12,8 +12,14 @@ class Image extends Model
     protected $connection = 'image';
     protected $table = 'images';
 
-    public function transaction()
+    public function allTransactions()
     {
-        return $this->hasOne(AllTransaction::class, 'image_name', 'image_name');
+        return $this->hasOne(AllTransaction::class, 'image_name', 'image_name'); // Adjust as necessary
+    }
+
+
+    public function getImageData()
+    {
+        return $this->image_data ? base64_encode($this->image_data) : null;
     }
 }

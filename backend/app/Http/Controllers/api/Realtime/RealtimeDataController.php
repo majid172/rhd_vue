@@ -3,127 +3,159 @@
 namespace App\Http\Controllers\api\Realtime;
 
 use App\Http\Controllers\Controller;
+use App\Models\Plaza;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Models\User;
 use App\Models\Bridge;
+
+
 use Illuminate\Support\Facades\Validator;
 use App\Helpers\PlazaHelper;
 use App\Models\AllTransaction;
 use App\Models\Image;
 use Carbon\Carbon;
 
+
 class RealtimeDataController extends Controller
 {
     public function index(Request $request)
     {
 
-     $user=User::all();
+        $user = User::all();
+        return $user;
 
-     return $user;
-
-
-
-//        $user = Auth::user();
-//        if ($user) {
-//            $userBridges = $user->bridges()->pluck('id')->toArray();
-//            $bridgeData = Bridge::with('plazas')
-//                ->whereIn('id', $userBridges)
-//                ->get();
-//            if ($request->selectedBridge) {
-//                $bridgePlaza = Bridge::with('plazas')
-//                    ->find($request->selectedBridge);
-//                return response()->json($bridgePlaza);
-//            }
-//            return view('realtime.realtimeRequest', compact('bridgeData'));
-//        }
-//        return redirect()->route('fallback');
     }
     public function realTimeShow(Request $request)
-   {
+    {
+        $plazaIds = PlazaHelper::getPlazaIds($request);
+        $bridgeId = $request->input('selectedBridgeId');
+        $plazaId = $request->input('plaza_id');
 
-    //   $validator = Validator::make($request->all(), [
-    //     'selectedBridgeId' => 'required|exists:bridges,id',
-    //     'plaza_id' => 'required|exists:plaza_tb,plaza_id',
-    //   ]);
-    //   if ($validator->fails()) {
-    //     return redirect()->back()->with('error','Please Submit With Correct Input') ;
-    //   }
+        // Get bridge and plaza names
+        $bridgeName = Bridge::where('id', $bridgeId)->value('bridge_name');
+        $plazaName = Plaza::where('plaza_id', $plazaId)->value('plaza_name');
 
-      $plazaIds = PlazaHelper::getPlazaIds($request);
+        // Get today's date
+        $today = Carbon::today()->format('Y-m-d');
 
-      $bridgeInfo = PlazaHelper::getBridgeAndPlazaNames($request);
-      $bridgeName = $bridgeInfo->bridge_name;
-      $plazaName = $bridgeInfo->plaza_name;
-      $today = now()->format('Y-m-d');
+        // Calculate total toll collected today
+        $total_toll = DB::table('all_transactions_tb')
+            ->whereIn('plaza_id', $plazaIds)
+            ->where('payment_type_id', 1) // Assuming payment type 1 is for toll payments
+            ->whereDate('created_at', $today)
+            ->sum('amount');
 
-    // $model = PlazaHelper::getModel($request->plaza_id);
-    $total_toll = AllTransaction::whereIn('plaza_id',$plazaIds)->where('payment_type_id',1)
-                    ->where('is_active', 1)
-                    ->whereDate('created_at', $today)
-                    ->sum('amount');
-
-    $total_etc = AllTransaction::whereIn('plaza_id', $plazaIds)
-        ->where('payment_type_id', 3)
-        ->where('is_active', 1)
-        ->whereDate('created_at', $today)
-        ->sum('amount');
+        // Calculate total ETC (Electronic Toll Collection) today
+        $total_etc = DB::table('all_transactions_tb')
+                        ->whereIn('plaza_id', $plazaIds)
+                        ->where('payment_type_id', 3) // Assuming payment type 3 is for ETC
+                        ->whereDate('created_at', $today)
+                        ->sum('amount');
 
 
-    $transactions = $this->getTrxData($plazaIds,$plazaName);
-    return response()->json([
-        'transactions'=>$transactions,
-        'total_toll' => $total_toll,
-        'total_etc' => $total_etc,
-        'bridgeName' => $bridgeName,
-        'plazaName' => $plazaName
-    ]);
-
-   }
-
-      public function getTrxData($plazaIds, $plazaName)
-   {
-
-    $subquery = DB::table('ALL_TRANSACTIONS_TB')
-    ->select('lane_no', DB::raw('MAX(created_at) as latest_created_at'))
-    ->whereIn('plaza_id', $plazaIds)
-    ->where('is_active', 1)
-    ->whereDate('created_at', Carbon::today())
-    ->groupBy('lane_no');
+        // Retrieve recent transactions
+        $transactions = AllTransaction::with('user')
+                            ->whereIn('plaza_id', $plazaIds)
+                            ->whereDate('created_at', Carbon::today()) // Filter by today's date
+                            ->orderBy('created_at', 'desc')
+                            ->limit(6)
+                            ->get();
 
 
+        // Map the transactions to a more readable format
+        $transactions = $transactions->map(function ($transaction) {
+            $image = Image::where('image_name', $transaction->image_name)->first();
+            $imageData = $image ? 'data:image/png;base64,' . base64_encode($image->image_data) : null;
 
-    $transactions = AllTransaction::with(['user'])
-    ->joinSub($subquery, 'latest_trx', function($join) {
-        $join->on('ALL_TRANSACTIONS_TB.lane_no', '=', 'latest_trx.lane_no')
-             ->on('ALL_TRANSACTIONS_TB.created_at', '=', 'latest_trx.latest_created_at');
-    })
-    ->select(
-        'ALL_TRANSACTIONS_TB.transaction_id',
-        'ALL_TRANSACTIONS_TB.registration_number',
-        'ALL_TRANSACTIONS_TB.amount',
-        'ALL_TRANSACTIONS_TB.transaction_number',
-        'ALL_TRANSACTIONS_TB.vehicle_class',
-        // 'ALL_TRANSACTIONS_TB.vehicle_id',
-        'ALL_TRANSACTIONS_TB.lane_no',
-        'ALL_TRANSACTIONS_TB.image_name',
-        'ALL_TRANSACTIONS_TB.bank_id',
-        'ALL_TRANSACTIONS_TB.payment_type_id',
-        'ALL_TRANSACTIONS_TB.user_id',
-        'ALL_TRANSACTIONS_TB.recognize_by',
-        'ALL_TRANSACTIONS_TB.plaza_id',
-        // 'ALL_TRANSACTIONS_TB.rfid_no',
-        'ALL_TRANSACTIONS_TB.class_status',
-        'ALL_TRANSACTIONS_TB.transactin_id_by_bank',
-        'ALL_TRANSACTIONS_TB.is_active',
-        'ALL_TRANSACTIONS_TB.status_remarks',
-        'ALL_TRANSACTIONS_TB.created_at',
-        'ALL_TRANSACTIONS_TB.updated_at'
 
-    )
-    ->orderBy('ALL_TRANSACTIONS_TB.lane_no', 'asc')
-    ->get();
+            return [
+                'transaction_id' => $transaction->transaction_id,
+                'registration_number' => $transaction->registration_number,
+                'vehicle_class' => $transaction->vehicle_class,
+                'amount' => $transaction->amount,
+                'transaction_number' => $transaction->transaction_number,
+                'lane_number' => $transaction->lane_no,
+                'image_name' => $transaction->image_name,
+                'status' => $transaction->class_status,
+                'created_at' => Carbon::parse($transaction->created_at)->format('Y-m-d H:i:s'),
+                'user' => [
+                    'id' => $transaction->user->id,
+                    'name' => $transaction->user->name,
+                    'username' => $transaction->user->username,
+                    'counter_key' => $transaction->user->counter_key,
+                    'status' => $transaction->user->status,
+                ],
+                'image_data' => $imageData // Include the base64-encoded image data
+            ];
+        });
 
-    return $transactions;
-   }
+        // Return the formatted transactions as a JSON response
+        return response()->json([
+            'total_toll' => $total_toll,
+            'total_etc' => $total_etc,
+            'transactions' => $transactions
+        ]);
+    }
+
+    public function laneShow(Request $request)
+    {
+
+        $plazaIds = PlazaHelper::getPlazaIds($request);
+        $bridgeId = $request->input('selectedBridgeId');
+        $plazaId = $request->input('plaza_id');
+        // Get bridge and plaza names
+        $bridgeName = Bridge::where('id', $bridgeId)->value('bridge_name');
+        $plazaName = Plaza::where('plaza_id', $plazaId)->value('plaza_name');
+
+        // Get today's date
+        $today = Carbon::today()->format('Y-m-d');
+
+        // Calculate total toll collected today
+        $total_toll = DB::table('all_transactions_tb')
+            ->whereIn('plaza_id', $plazaIds)
+            ->where('payment_type_id', 1) // Assuming payment type 1 is for toll payments
+            ->whereDate('created_at', $today)
+            ->sum('amount');
+
+        // Calculate total ETC (Electronic Toll Collection) today
+        $total_etc = DB::table('all_transactions_tb')
+            ->whereIn('plaza_id', $plazaIds)
+            ->where('payment_type_id', 3) // Assuming payment type 3 is for ETC
+            ->whereDate('created_at', $today)
+            ->sum('amount');
+
+        // Retrieve recent transactions
+return $request->all();
+        $transactions = AllTransaction::with('user')
+            ->whereIn('plaza_id', $plazaIds)
+            ->where(['is_active'=>1,'lane_no'=>$request->lane])
+            ->whereDate('created_at', Carbon::today()) // Filter by today's date
+            ->orderBy('created_at', 'desc')
+            ->limit(6)
+            ->get();
+
+return $transactions;
+
+// $transactions = $model::with(['image','user'])
+//             ->whereIn('plaza_id',$plazaIds)
+//             ->where(['is_active'=>1,'lane_no'=>$counter])
+//             ->whereDate('all_transactions_tb.created_at',carbon::today())
+//             ->orderBy('all_transactions_tb.created_at','desc')
+//             ->limit(6)
+//             ->get();
+//         return $transactions;
+
+        // Return the formatted transactions as a JSON response
+        return response()->json([
+            'total_toll' => $total_toll,
+            'total_etc' => $total_etc,
+            'transactions' => $transactions
+        ]);
+    }
+
+
+
 }
+
+

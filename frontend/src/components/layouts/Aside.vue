@@ -45,14 +45,13 @@ import { RouterLink } from 'vue-router'
               <ul class="collapse" id="realtimeCollapse">
                 <li class="menu-item">
                   <router-link to="/realtime-request" class="menu-link">
-                    <div class="text-truncate" data-i18n="realtime">Realtim Data</div>
+                    <div class="text-truncate" data-i18n="realtime">Realtime Data</div>
                   </router-link>
                 </li>
                 <li class="menu-item">
-                  <a href="app-academy-dashboard.html" target="_blank" class="menu-link">
+                  <router-link to="/realtime/lane-request" class="menu-link">
                     <div class="text-truncate" data-i18n="lanewise">Lanewise Realtime </div>
-
-                  </a>
+                  </router-link>
                 </li>
 
               </ul>
@@ -80,16 +79,16 @@ import { RouterLink } from 'vue-router'
 
                 </li>
                 <li class="menu-item">
-                  <a href="app-academy-dashboard.html" target="_blank" class="menu-link">
+                  <router-link to="/lane/summary" class="menu-link">
                     <div class="text-truncate" data-i18n="lane">Lane Summary</div>
 
-                  </a>
+                  </router-link>
                 </li>
                 <li class="menu-item">
-                  <a href="app-academy-dashboard.html" target="_blank" class="menu-link">
+                  <router-link to="/monthly/summary" target="_blank" class="menu-link">
                     <div class="text-truncate" data-i18n="Academy">Monthly</div>
 
-                  </a>
+                  </router-link>
                 </li>
               </ul>
             </li>

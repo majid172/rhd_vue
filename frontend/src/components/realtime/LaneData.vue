@@ -7,11 +7,11 @@ const pollingInterval = ref(null); // Ref to hold the interval ID
 
 // Fetch the data when the component is mounted
 onMounted(() => {
-  realtimeStore.reloadRealtime(); // Load initial data
+  realtimeStore.reloadLane(); // Load initial data
 
   // Start polling for new data every 5 seconds (you can adjust the interval)
   pollingInterval.value = setInterval(() => {
-    realtimeStore.reloadRealtime(); // Fetch the latest data
+    realtimeStore.reloadLane(); // Fetch the latest data
   }, 2000); // Poll every 5 seconds
 });
 
@@ -32,7 +32,7 @@ onBeforeUnmount(() => {
       </h5>
 
       <div class="row row-cols-1 row-cols-md-3 g-3 mb-12 justify-content-center">
-        <div class="col" v-for="(item, index) in realtimeStore.reports.transactions" :key="index">
+        <!-- <div class="col" v-for="(item, index) in realtimeStore.reports.transactions" :key="index">
           <div class="card h-100">
             <img class="card-img-top" :src="item.image_data" alt="Card image cap" />
             <div class="card-body">
@@ -81,7 +81,7 @@ onBeforeUnmount(() => {
               </table>
             </div>
           </div>
-        </div>
+        </div> -->
       </div>
     </div>
   </div>
