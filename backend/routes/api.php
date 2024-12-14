@@ -5,6 +5,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\api\Realtime\RealtimeDataController;
 use App\Http\Controllers\api\Auth\AuthController;
 use App\Http\Controllers\api\Summary\DailyReportController;
+use App\Http\Controllers\api\Summary\MonthlyReportController;
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -32,6 +34,11 @@ Route::get('/realtime',[RealtimeDataController::class,'index']);
 Route::controller(DailyReportController::class)->prefix('summary')->group(function (){
     Route::get('/daily/report','dailyRequest');
     Route::post('/daily/report/show','dailyShow');
+});
+
+Route::controller(MonthlyReportController::class)->prefix('summary/monthly/')->group(function(){
+    Route::get('/','monthlyRequest');
+    Route::post('/show', "monthlyShow");
 });
 Route::get('/', [AuthController::class, 'login'])->name('login.index');
 Route::post('/login', [AuthController::class, 'loginStore'])->name('login.store');

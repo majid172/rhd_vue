@@ -38,7 +38,7 @@ export const useMonthlySummaryStore = defineStore("monthlySummary", {
 
       try {
         // console.log("Generating report with data:", this.inputField);
-        const {data} = await axios.get('http://127.0.0.1:8000/api/summary/daily/report');
+        const {data} = await axios.post('http://127.0.0.1:8000/api/summary/monthly/show',this.inputField);
         console.log(data);
 
 
