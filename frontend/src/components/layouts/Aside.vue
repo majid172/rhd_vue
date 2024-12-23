@@ -22,7 +22,7 @@ import { RouterLink } from 'vue-router'
           <li class="menu-item">
 
               <router-link to="/dashboard" class="menu-link">
-                <i class="menu-icon tf-icons bx bx-envelope"></i>
+                <i class="menu-icon tf-icons bx bx-home-smile"></i>
                 <div class="text-truncate" data-i18n="Email">Dashboard</div>
 
               </router-link>
@@ -39,7 +39,7 @@ import { RouterLink } from 'vue-router'
                 data-bs-target="#realtimeCollapse"
                 aria-expanded="false"
                 aria-controls="realtimeCollapse">
-                <i class="menu-icon tf-icons bx bx-envelope"></i>
+                <i class="menu-icon tf-icons bx bx-camera"></i>
                 <div class="text-truncate" data-i18n="realtime">Realtime</div>
               </a>
               <ul class="collapse" id="realtimeCollapse">
@@ -68,7 +68,7 @@ import { RouterLink } from 'vue-router'
                 data-bs-target="#summaryCollapse"
                 aria-expanded="false"
                 aria-controls="summaryCollapse">
-                <i class="menu-icon tf-icons bx bx-envelope"></i>
+                <i class="menu-icon tf-icons bx bx-detail"></i>
                 <div class="text-truncate" data-i18n="summary">Summary Report</div>
               </a>
               <ul class="collapse" id="summaryCollapse">
@@ -85,13 +85,26 @@ import { RouterLink } from 'vue-router'
                   </router-link>
                 </li>
                 <li class="menu-item">
-                  <router-link to="/monthly/summary" target="_blank" class="menu-link">
-                    <div class="text-truncate" data-i18n="Academy">Monthly</div>
+                  <router-link to="/monthly/summary"  class="menu-link">
+                    <div class="text-truncate" data-i18n="Academy">Monthly Report</div>
 
                   </router-link>
                 </li>
               </ul>
             </li>
+
+            <li class="menu-header small text-uppercase">
+              <span class="menu-header-text">Yearly Report</span>
+            </li>
+
+              <li class="menu-item">
+                <router-link to="/yearly/summary/report" class="menu-link">
+                  <i class="menu-icon tf-icons bx bx-calendar"></i>
+                  <div class="text-truncate" data-i18n="Email">Yearly Summary Report</div>
+
+                </router-link>
+              </li>
+
 
             <li class="menu-header small text-uppercase">
               <span class="menu-header-text">User Management</span>
@@ -100,12 +113,12 @@ import { RouterLink } from 'vue-router'
             <li class="menu-item">
 
               <router-link to="/dashboard" class="menu-link">
-                <i class="menu-icon tf-icons bx bx-envelope"></i>
+                <i class="menu-icon tf-icons bx bx-user-plus"></i>
                 <div class="text-truncate" data-i18n="Email">Create User</div>
               </router-link>
               <li class="menu-item">
                 <router-link to="/user-list" class="menu-link">
-                  <i class="menu-icon tf-icons bx bx-envelope"></i>
+                  <i class="menu-icon tf-icons bx bx-user"></i>
                   <div class="text-truncate" data-i18n="Email">User List</div>
 
                 </router-link>
@@ -116,7 +129,7 @@ import { RouterLink } from 'vue-router'
           <li class="menu-item">
 
               <router-link to="/dashboard" class="menu-link">
-                <i class="menu-icon tf-icons bx bx-envelope"></i>
+                <i class="menu-icon tf-icons bx bx-power-off"></i>
                 <div class="text-truncate" data-i18n="Email">Logout</div>
 
               </router-link>

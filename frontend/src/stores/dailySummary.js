@@ -22,9 +22,8 @@ export const useDailySummaryStore = defineStore('dailySummary', {
 
         this.cashDetails = data.cashDetails;
         this.etcDetails = data.etcDetails;
-        this.exemptDetails = data.exemptDetails;  // Fixed typo here from 'examptDetails'
-
-        // You can pass the data to the route component using params or props.
+        this.exemptDetails = data.exemptDetails;  //
+        
         router.push({
           name: "dailySummaryReport",
           params: {

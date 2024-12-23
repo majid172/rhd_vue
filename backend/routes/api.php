@@ -40,6 +40,7 @@ Route::controller(MonthlyReportController::class)->prefix('summary/monthly/')->g
     Route::get('/','monthlyRequest');
     Route::post('/show', "monthlyShow");
 });
+// Route::controller()
 Route::get('/', [AuthController::class, 'login'])->name('login.index');
 Route::post('/login', [AuthController::class, 'loginStore'])->name('login.store');
 //Route::post("/logout", [App\Http\Controllers\Auth\AuthController::class, 'logout'])->name("logout");

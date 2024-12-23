@@ -7,9 +7,8 @@ const pollingInterval = ref(null); // Ref to hold the interval ID
 
 // Fetch the data when the component is mounted
 onMounted(() => {
-  realtimeStore.reloadRealtime(); // Load initial data
-
-  // Start polling for new data every 5 seconds (you can adjust the interval)
+  realtimeStore.reloadRealtime();
+  
   pollingInterval.value = setInterval(() => {
     realtimeStore.reloadRealtime(); // Fetch the latest data
   }, 2000); // Poll every 5 seconds

@@ -48,9 +48,10 @@ class MonthlyReportController extends Controller
         //     return redirect()->back()->with('error','Please Submit With Correct Input') ;
         // }
 
-        $plazaId = $request->plaza_id;
+
+        $plazaId = $request->selectedPlazaId;
         $month = $request->month;
-        $paymentType = $request->payment_type_id;
+        $paymentType = $request->payment_type;
         $year = date('Y', strtotime($month));
         $monthValue = date('m', strtotime($month));
         $date = Carbon::createFromFormat('Y-m', $month);
@@ -66,8 +67,9 @@ class MonthlyReportController extends Controller
 
         $transactions = $this->getMonthly($plazaId,$paymentType,$year,$monthValue,$reportType);
 
-return $transactions;
-        return view('summaryReport.show.monthlySummaryShow', compact('transactions', 'plazaDetails', 'month','year','reportType','paymentType','currentMonth'));
+
+        return response()->json(['transactions' => $transactions]);
+
     }
 
     public function getMonthly($plazaId,$paymentType,$year,$monthValue,$reportType)
@@ -75,7 +77,6 @@ return $transactions;
 
         if ($reportType==1)
         {
-
             $query = AllTransaction::select(
                 DB::raw('EXTRACT(DAY FROM created_at) as day'),
                 DB::raw('COUNT(CASE WHEN vehicle_class = \'AGRO USE\' THEN transaction_id ELSE NULL END) as agro_use'),

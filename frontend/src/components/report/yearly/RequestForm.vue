@@ -44,7 +44,7 @@ const validateAndSubmit = async () => {
   <div class="container-xxl flex-grow-1 container-p-y">
     <div class="card mb-6">
       <div class="card-header d-flex justify-content-between align-items-center">
-        <h5 class="mb-0">Monthly Report Form</h5>
+        <h5 class="mb-0">Yearly Report Form</h5>
       </div>
 
       <div class="card-body">
@@ -95,58 +95,30 @@ const validateAndSubmit = async () => {
 
           <!-- Month and Payment Type -->
           <div class="row">
-            <div class="col-lg-6">
-              <div class="mb-4">
-                <label for="monthInput" class="form-label">Select Month</label>
-                <input
-                  id="monthInput"
-                  class="form-control"
-                  type="month"
-                  v-model="monthlySummaryStore.inputField.month"
-                />
-              </div>
-            </div>
+
 
             <div class="col-lg-6">
               <div class="mb-4">
-                <label for="paymentTypeSelect" class="form-label">Select Payment Type</label>
+                <label for="year" class="form-label">Select Year</label>
                 <select
-                  id="paymentTypeSelect"
+                  id="year"
                   class="form-select"
                   v-model="monthlySummaryStore.inputField.payment_type"
                 >
                   <option value="" disabled>Choose Payment Type</option>
-                  <option :value="1">Cash</option>
-                  <option :value="2">Exempt</option>
-                  <option :value="3">ETC</option>
+                  <option :value="2024">2024</option>
+                  <option :value="2023">2023</option>
                 </select>
               </div>
             </div>
           </div>
 
-          <!-- Report Type -->
-          <div class="row">
-            <div class="col-lg-6">
-              <div class="mb-4">
-                <label for="reportTypeSelect" class="form-label">Select Report Type</label>
-                <select
-                  id="reportTypeSelect"
-                  class="form-select"
-                  v-model="monthlySummaryStore.inputField.report_type"
-                >
-                  <option value="" disabled>Choose Report Type</option>
-                  <option :value="1">Transaction Count</option>
-                  <option :value="2">Transaction Amount</option>
-                </select>
-              </div>
-            </div>
-          </div>
 
           <!-- Submit Button -->
           <div class="row">
-            <div class="col-lg-12 text-end">
+            <div class="col-lg-12">
               <button type="submit" class="btn btn-primary" :disabled="monthlySummaryStore.isLoading">
-                Generate Report
+                Submnit
               </button>
             </div>
           </div>
