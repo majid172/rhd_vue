@@ -2,28 +2,24 @@ import { defineStore } from "pinia";
 import axios from "axios";
 import router from "@/router";
 
-export const useMonthlySummaryStore = defineStore("monthlySummary", {
+export const useEtcMonthlySummaryStore = defineStore("etcMonthlySummary", {
   state: () => ({
     monthlyReports: [],
     inputField: {
       selectedBridgeId: null,
       selectedPlazaId: null,
       month: null,
-      payment_type: null,
-      report_type: null,
+
     },
   }),
   actions: {
     validateInputs() {
-      const { selectedBridgeId, selectedPlazaId, month, payment_type, report_type } =
+      const { selectedBridgeId, selectedPlazaId, month } =
         this.inputField;
 
       if (!selectedBridgeId) return "Please select a bridge.";
       if (!selectedPlazaId) return "Please select a plaza.";
       if (!month) return "Please select a month.";
-      if (!payment_type) return "Please select a payment type.";
-      if (!report_type) return "Please select a report type.";
-
       return true;
     },
 
@@ -32,6 +28,7 @@ export const useMonthlySummaryStore = defineStore("monthlySummary", {
      */
     async showMonthlyReport() {
       try {
+        console.log(this.inputField)
         // Validate inputs
         const validationResult = this.validateInputs();
         if (validationResult !== true) {
@@ -40,7 +37,7 @@ export const useMonthlySummaryStore = defineStore("monthlySummary", {
 
         // Fetch data from API
         const { data } = await axios.post(
-          "http://127.0.0.1:8000/api/summary/monthly/show",
+          "http://127.0.0.1:8000/api/summary/etc/monthly/show",
           this.inputField
         );
 

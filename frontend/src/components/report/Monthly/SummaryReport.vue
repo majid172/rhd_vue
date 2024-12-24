@@ -1,7 +1,7 @@
 <script setup>
 import { onMounted, computed, ref } from "vue";
 import { useMonthlySummaryStore } from "@/stores/monthlySummary";
-import { routerViewLocationKey } from "vue-router";
+// import { router } from "vue-router";
 
 // Access the store
 const monthlySummaryStore = useMonthlySummaryStore();
@@ -140,6 +140,3 @@ onMounted(async () => {
   </div>
 </template>
 
-<style scoped>
-/* Add any custom styles you need here */
-</style>

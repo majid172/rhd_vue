@@ -5,9 +5,9 @@ import { RouterLink } from 'vue-router'
 <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
           <div class="app-brand demo">
           <router-link to="/dashboard" class="app-brand-link">
-              <span class="app-brand-logo demo">
-                <img  src="@/assets/img/logo.png" width="40" height="40" alt="Card image cap" />
-              </span>
+<!--              <span class="app-brand-logo demo">-->
+<!--                <img  src="@/assets/img/logo.png" width="40" height="40" alt="Card image cap" />-->
+<!--              </span>-->
               <span class="app-brand-text demo menu-text fw-bold ms-2">TCMS</span>
             </router-link>
             <a href="javascript:void(0);" class="layout-menu-toggle menu-link text-large ms-auto d-block d-xl-none">
@@ -104,6 +104,53 @@ import { RouterLink } from 'vue-router'
 
                 </router-link>
               </li>
+
+            <li class="menu-header small text-uppercase">
+              <span class="menu-header-text">Electronic Toll Collection</span>
+            </li>
+
+            <li class="menu-item">
+              <a
+                href="javascript:void(0);"
+                class="menu-link"
+                data-bs-toggle="collapse"
+                data-bs-target="#etcCollapse"
+                aria-expanded="false"
+                aria-controls="etcCollapse">
+                <i class="menu-icon tf-icons bx bx-file"></i>
+                <div class="text-truncate" data-i18n="etc">ETC Report</div>
+              </a>
+              <ul class="collapse" id="etcCollapse">
+                <li class="menu-item">
+
+                  <router-link to="/daily/summary" class="menu-link">
+                    <div class="text-truncate" data-i18n="daily">ETC Summary Report</div>
+                  </router-link>
+
+                </li>
+                <li class="menu-item">
+                  <router-link to="/lane/summary" class="menu-link">
+                    <div class="text-truncate" data-i18n="lane">Bankwise Report</div>
+
+                  </router-link>
+                </li>
+                <li class="menu-item">
+                  <router-link to="/etc/monthly/summary"  class="menu-link">
+                    <div class="text-truncate" data-i18n="Academy">Monthly Report</div>
+                  </router-link>
+                </li>
+                <li class="menu-item">
+                  <router-link to="/monthly/summary"  class="menu-link">
+                    <div class="text-truncate" data-i18n="Academy">Yearly Report</div>
+                  </router-link>
+                </li>
+                <li class="menu-item">
+                  <router-link to="/monthly/summary"  class="menu-link">
+                    <div class="text-truncate" data-i18n="Academy">Details Report</div>
+                  </router-link>
+                </li>
+              </ul>
+            </li>
 
 
             <li class="menu-header small text-uppercase">

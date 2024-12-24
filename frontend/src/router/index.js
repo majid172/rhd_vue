@@ -10,8 +10,12 @@ import DailyReportView from "@/views/summary/DailyReportView.vue";
 import LaneSummaryRequestView from '@/views/summary/LaneSummaryRequestView.vue';
 import MonthlySummaryRequestView from '@/views/summary/MonthlyRequestView.vue';
 import MonthlyReportView from '@/views/summary/MonthlyReportView.vue';
+import MonthlyView from "@/views/etc/monthly/MonthlyView.vue";
+
 import YearlyRequestView from '@/views/summary/YearlyRequestView.vue';
+
 import UserListView from "@/views/user/UserListView.vue";
+import YearlyReportView from "@/views/summary/YearlyReportView.vue";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.VUE_APP_BASE_API_URL),
@@ -74,6 +78,11 @@ const router = createRouter({
       component: MonthlyReportView
     },
     {
+      path: '/etc/monthly/summary',
+      name: 'etcMonthlySummary',
+      component: MonthlyView
+    },
+    {
       path: '/user-list',
       name: 'userlist',
       component: UserListView
@@ -82,6 +91,11 @@ const router = createRouter({
       path: '/yearly/summary/report',
       name:'yearly',
       component: YearlyRequestView
+    },
+    {
+      path: '/yearly/summary/report/show',
+      name: "yearlyShow",
+      component: YearlyReportView,
     },
     {
       path: '/about',
