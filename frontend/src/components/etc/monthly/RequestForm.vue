@@ -36,7 +36,6 @@ const validateAndSubmit = async () => {
     return;
   }
 
-  // Call showMonthlyReport to fetch the data
   await monthlySummaryStore.showMonthlyReport();
 };
 </script>
@@ -79,7 +78,7 @@ const validateAndSubmit = async () => {
                 <select
                   id="plazaSelect"
                   class="form-select"
-                  v-model="monthlySummaryStore.inputField.selectedPlazaId"
+                  v-model="monthlySummaryStore.inputField.plaza_id"
                 >
                   <option value="" disabled>Choose Plaza</option>
                   <option

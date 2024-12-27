@@ -11,9 +11,12 @@ import LaneSummaryRequestView from '@/views/summary/LaneSummaryRequestView.vue';
 import MonthlySummaryRequestView from '@/views/summary/MonthlyRequestView.vue';
 import MonthlyReportView from '@/views/summary/MonthlyReportView.vue';
 import MonthlyView from "@/views/etc/monthly/MonthlyView.vue";
-
+import EtcMonthlyReportView from "@/views/etc/monthly/MonthlyReportView.vue";
+import EtcSummaryReportView from "@/views/etc/summary/ReportView.vue";
+import EtcSummaryView from "@/views/etc/summary/SummaryView.vue";
+import EtcYearlyRequestView from "@/views/etc/yearly/YearlyRequestView.vue";
+import EtcYearlyReportView from "@/views/etc/yearly/YearlyReportView.vue";
 import YearlyRequestView from '@/views/summary/YearlyRequestView.vue';
-
 import UserListView from "@/views/user/UserListView.vue";
 import YearlyReportView from "@/views/summary/YearlyReportView.vue";
 
@@ -72,16 +75,44 @@ const router = createRouter({
       name: 'monthlySummary',
       component: MonthlySummaryRequestView
     },
+
     {
       path: '/monthly/summary/report',
       name: 'monthlySummaryReport',
       component: MonthlyReportView
     },
     {
+      path: '/etc/summary',
+      name: 'etcSummary',
+      component: EtcSummaryReportView
+    },
+    {
+      path:'/etc/summary/show',
+      name: "etcSummaryShow",
+      component: EtcSummaryView
+    },
+
+    {
       path: '/etc/monthly/summary',
       name: 'etcMonthlySummary',
       component: MonthlyView
     },
+    {
+      path: '/etc/monthly/show',
+      name: 'etcMonthlyReport',
+      component: EtcMonthlyReportView
+    },
+    {
+      path: '/etc/yearly/report',
+      name: "etcYearlyReport",
+      component: EtcYearlyRequestView
+    },
+    {
+      path: '/etc/yearly/report/show',
+      name: "etcYearlyReportShow",
+      component: EtcYearlyReportView
+    },
+
     {
       path: '/user-list',
       name: 'userlist',

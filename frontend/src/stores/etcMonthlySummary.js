@@ -5,20 +5,21 @@ import router from "@/router";
 export const useEtcMonthlySummaryStore = defineStore("etcMonthlySummary", {
   state: () => ({
     monthlyReports: [],
+    plazaName: null,
     inputField: {
       selectedBridgeId: null,
-      selectedPlazaId: null,
+      plaza_id: null,
       month: null,
 
     },
   }),
   actions: {
     validateInputs() {
-      const { selectedBridgeId, selectedPlazaId, month } =
+      const { selectedBridgeId, plaza_id, month } =
         this.inputField;
 
       if (!selectedBridgeId) return "Please select a bridge.";
-      if (!selectedPlazaId) return "Please select a plaza.";
+      if (!plaza_id) return "Please select a plaza.";
       if (!month) return "Please select a month.";
       return true;
     },
@@ -28,27 +29,19 @@ export const useEtcMonthlySummaryStore = defineStore("etcMonthlySummary", {
      */
     async showMonthlyReport() {
       try {
-        console.log(this.inputField)
-        // Validate inputs
         const validationResult = this.validateInputs();
         if (validationResult !== true) {
           throw new Error(validationResult);
         }
 
         // Fetch data from API
-        const { data } = await axios.post(
-          "http://127.0.0.1:8000/api/summary/etc/monthly/show",
-          this.inputField
-        );
+        const { data } = await axios.post("/etc/monthly/show", this.inputField);
 
-        console.log("Report data:", data);
-
-        // Update state with fetched data
         this.monthlyReports = data.transactions;
+        this.plazaName = data.plazaName;
 
-        // Update the URL with query parameters and navigate to the report page
         await router.push({
-          name: "monthlySummaryReport",
+          name: "etcMonthlyReport",
           query: { ...this.inputField },
         });
 
@@ -71,7 +64,7 @@ export const useEtcMonthlySummaryStore = defineStore("etcMonthlySummary", {
 
         // Fetch data using the current query parameters
         const { data } = await axios.post(
-          "http://127.0.0.1:8000/api/summary/monthly/show",
+          "http://127.0.0.1:8000/api/etc/monthly/show",
           queryParams
         );
 

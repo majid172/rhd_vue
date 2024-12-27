@@ -48,7 +48,6 @@ class MonthlyReportController extends Controller
         //     return redirect()->back()->with('error','Please Submit With Correct Input') ;
         // }
 
-
         $plazaId = $request->selectedPlazaId;
         $month = $request->month;
         $paymentType = $request->payment_type;

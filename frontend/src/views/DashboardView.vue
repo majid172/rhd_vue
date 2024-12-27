@@ -10,12 +10,12 @@ import Footer from "@/components/layouts/Footer.vue";
       <!-- Menu -->
       <Aside></Aside>
       <div class="layout-page">
-        <Navbar></Navbar>
+        <Navbar/>
         <!-- Content wrapper -->
         <div class="content-wrapper">
-          <Dashboard></Dashboard>
+          <Dashboard/>
 
-          <Footer> </Footer>
+          <Footer/>
           <div class="content-backdrop fade"></div>
         </div>
       </div>

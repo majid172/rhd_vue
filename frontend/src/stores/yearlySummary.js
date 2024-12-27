@@ -25,6 +25,14 @@ export const useYearlySummaryStore = defineStore("yearlySummary",{
       router.push({
           name: "yearlyShow"
       })
+    },
+
+    async showEtcReport(){
+      router.push({
+        name: "etcYearlyReportShow"
+      })
+
     }
+
   }
 });

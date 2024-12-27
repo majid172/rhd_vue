@@ -94,6 +94,37 @@ import { RouterLink } from 'vue-router'
             </li>
 
             <li class="menu-header small text-uppercase">
+              <span class="menu-header-text">Details Report</span>
+            </li>
+            <li class="menu-item">
+              <a
+                href="javascript:void(0);"
+                class="menu-link"
+                data-bs-toggle="collapse"
+                data-bs-target="#detailsCollapse"
+                aria-expanded="false"
+                aria-controls="detailsCollapse">
+                <i class="menu-icon tf-icons bx bx-list-ul"></i>
+
+                <div class="text-truncate" data-i18n="details">Details Report</div>
+              </a>
+              <ul class="collapse" id="detailsCollapse">
+                <li class="menu-item">
+                  <router-link to="/daily/summary" class="menu-link">
+                    <div class="text-truncate" data-i18n="daily">Transaction Report</div>
+                  </router-link>
+
+                </li>
+                <li class="menu-item">
+                  <router-link to="/lane/summary" class="menu-link">
+                    <div class="text-truncate" data-i18n="lane">NON - BRTA Transaction</div>
+                  </router-link>
+                </li>
+
+              </ul>
+            </li>
+
+            <li class="menu-header small text-uppercase">
               <span class="menu-header-text">Yearly Report</span>
             </li>
 
@@ -122,11 +153,9 @@ import { RouterLink } from 'vue-router'
               </a>
               <ul class="collapse" id="etcCollapse">
                 <li class="menu-item">
-
-                  <router-link to="/daily/summary" class="menu-link">
+                  <router-link to="/etc/summary" class="menu-link">
                     <div class="text-truncate" data-i18n="daily">ETC Summary Report</div>
                   </router-link>
-
                 </li>
                 <li class="menu-item">
                   <router-link to="/lane/summary" class="menu-link">
@@ -140,7 +169,7 @@ import { RouterLink } from 'vue-router'
                   </router-link>
                 </li>
                 <li class="menu-item">
-                  <router-link to="/monthly/summary"  class="menu-link">
+                  <router-link to="/etc/yearly/report"  class="menu-link">
                     <div class="text-truncate" data-i18n="Academy">Yearly Report</div>
                   </router-link>
                 </li>

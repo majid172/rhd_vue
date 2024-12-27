@@ -5,22 +5,41 @@ import {useDailySummaryStore} from "@/stores/dailySummary.js";
 
 const bridgeStore = useBridgeStore();
 const dailySummaryStore = useDailySummaryStore();
+
 onMounted(()=>{
   bridgeStore.fetchBridge();
-})
+});
+onMounted(()=>{
+  flatpickr("#inputDate", {
+    dateFormat: "Y-m-d",
+    maxDate: "today",
+  });
+
+  flatpickr("#startTime", {
+    enableTime: true,
+    noCalendar: true,
+    dateFormat: "H:i:ss",
+  });
+
+  flatpickr("#endTime", {
+    enableTime: true,
+    noCalendar: true,
+    dateFormat: "H:i:ss",
+  });
+});
 </script>
 <template>
   <div class="container-xxl flex-grow-1 container-p-y">
     <div class="card mb-6">
       <div class="card-header d-flex justify-content-between align-items-center">
-        <h5 class="mb-0">Lane Report Form</h5>
+        <h5 class="mb-0">Lane Summary Report</h5>
       </div>
       <div class="card-body">
         <form>
           <div class="row">
             <div class="col-lg-6">
               <div class="mb-4 ">
-                <label for="defaultSelect" class="form-label">Select Bridge</label>
+                <label for="defaultSelect" class="form-label">Select Bridge <span class="text-danger">*</span></label>
                 <div class="col-md-10">
                   <select id="defaultSelect" class="form-select" v-model="dailySummaryStore.inputField.selectedBridgeId">
                     <option>Choose Bridge</option>
@@ -34,10 +53,10 @@ onMounted(()=>{
             </div>
             <div class="col-lg-6">
               <div class="mb-4 ">
-                <label for="defaultSelect" class="form-label">Select Plaza</label>
+                <label for="defaultSelect" class="form-label">Select Plaza <span class="text-danger">*</span></label>
                 <div class="col-md-10">
                   <select id="defaultSelect" class="form-select" v-model="dailySummaryStore.inputField.plaza_id">
-                    <option>Choose Plaza</option>
+                    <option>Choose Plaza <span class="text-danger">*</span></option>
                     <option  :value="3">
                       Meghna
                     </option>
@@ -50,10 +69,10 @@ onMounted(()=>{
           <div class="row">
             <div class="col-lg-6">
               <div class="mb-4 ">
-                <label for="defaultSelect" class="form-label">Select Date</label>
+                <label for="defaultSelect" class="form-label">Select Date <span class="text-danger">*</span></label>
                 <div class="col-md-10">
-                  <input class="form-control" type="date" value="2021-06-18" id="html5-date-input"
-                         v-model="dailySummaryStore.inputField.inputDate">
+                  <input class="form-control" type="text" value="2021-06-18" id="inputDate"
+                         v-model="dailySummaryStore.inputField.inputDate" placeholder="Enter your date">
                 </div>
               </div>
 
@@ -62,19 +81,20 @@ onMounted(()=>{
           <div class="row">
             <div class="col-lg-6">
               <div class="mb-4">
-                <label for="html5-time-input" class="col-md-2 col-form-label">Star Time</label>
+                <label for="html5-time-input" class="col-md-2 col-form-label">Start Time <span class="text-danger">*
+                </span></label>
                 <div class="col-md-10">
-                  <input class="form-control" type="time" value="12:30:00" id="html5-time-input"
-                         v-model="dailySummaryStore.inputField.inputStartTime">
+                  <input class="form-control" type="text" value="12:30:00" id="startTime"
+                         v-model="dailySummaryStore.inputField.inputStartTime" placeholder="Enter your start time">
                 </div>
               </div>
             </div>
             <div class="col-lg-6">
               <div class="mb-4">
-                <label for="html5-time-input" class="col-md-2 col-form-label">End Time</label>
+                <label for="html5-time-input" class="col-md-2 col-form-label">End Time <span class="text-danger">*</span></label>
                 <div class="col-md-10">
-                  <input class="form-control" type="time" value="12:30:00" id="html5-time-input"
-                         v-model="dailySummaryStore.inputField.inputEndTime">
+                  <input class="form-control" type="time" value="12:30:00" id="endTime"
+                         v-model="dailySummaryStore.inputField.inputEndTime" placeholder="Enter your end time">
                 </div>
               </div>
             </div>

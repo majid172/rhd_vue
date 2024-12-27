@@ -5,8 +5,10 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\api\Realtime\RealtimeDataController;
 use App\Http\Controllers\api\Auth\AuthController;
 use App\Http\Controllers\api\Summary\DailyReportController;
-use App\Http\Controllers\api\Summary\MonthlyReportController;
 use App\Http\Controllers\api\Summary\YearlyReportController;
+use App\Http\Controllers\api\Summary\MonthlyReportController;
+use App\Http\Controllers\api\etc\EtcSummaryController;
+use App\Http\Controllers\api\etc\MonthlyController;
 
 /*
 |--------------------------------------------------------------------------
@@ -46,6 +48,16 @@ Route::controller(YearlyReportController::class)->prefix('summary/yearly/')->gro
     Route::get('/','yearlyRequest');
     Route::post('/show','yearlyShow');
 });
+
+Route::controller(EtcSummaryController::class)->prefix('etc/summary/')->group(function(){
+   Route::get('/','etcRequest');
+   Route::post('show','etcShow');
+});
+Route::controller(MonthlyController::class)->prefix('etc/monthly')->group(function(){
+    Route::get('/','monthlyRequest');
+    Route::post('/show', "monthlyShow");
+});
+
 Route::get('/', [AuthController::class, 'login'])->name('login.index');
 Route::post('/login', [AuthController::class, 'loginStore'])->name('login.store');
 //Route::post("/logout", [App\Http\Controllers\Auth\AuthController::class, 'logout'])->name("logout");
