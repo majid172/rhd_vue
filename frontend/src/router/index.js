@@ -11,6 +11,8 @@ import LaneSummaryRequestView from '@/views/summary/LaneSummaryRequestView.vue';
 import MonthlySummaryRequestView from '@/views/summary/MonthlyRequestView.vue';
 import MonthlyReportView from '@/views/summary/MonthlyReportView.vue';
 import MonthlyView from "@/views/etc/monthly/MonthlyView.vue";
+import EtcBankwiseView from "@/views/etc/bankwise/ReportView.vue";
+import EtcBankwiseShowView from "@/views/etc/bankwise/SummaryView.vue";
 import EtcMonthlyReportView from "@/views/etc/monthly/MonthlyReportView.vue";
 import EtcSummaryReportView from "@/views/etc/summary/ReportView.vue";
 import EtcSummaryView from "@/views/etc/summary/SummaryView.vue";
@@ -91,7 +93,17 @@ const router = createRouter({
       name: "etcSummaryShow",
       component: EtcSummaryView
     },
+    {
+      path: "/etc/bankwise",
+      name: "etcBankwise",
+      component: EtcBankwiseView
+    },
 
+    {
+      path: '/etc/bankwise/show',
+      name: "etcBankwiseShow",
+      component: EtcBankwiseShowView
+    },
     {
       path: '/etc/monthly/summary',
       name: 'etcMonthlySummary',

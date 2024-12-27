@@ -1,7 +1,7 @@
 <script setup>
 import Aside from "@/components/layouts/Aside.vue";
 import Footer from "@/components/layouts/Footer.vue";
-import RequestForm from "@/components/etc/summary/RequestForm.vue";
+import RequestForm from "@/components/etc/bankwise/RequestForm.vue";
 import Navbar from "@/components/layouts/Navbar.vue";
 </script>
 <template>

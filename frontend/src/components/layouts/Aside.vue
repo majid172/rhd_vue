@@ -158,7 +158,7 @@ import { RouterLink } from 'vue-router'
                   </router-link>
                 </li>
                 <li class="menu-item">
-                  <router-link to="/lane/summary" class="menu-link">
+                  <router-link to="/etc/bankwise" class="menu-link">
                     <div class="text-truncate" data-i18n="lane">Bankwise Report</div>
 
                   </router-link>
