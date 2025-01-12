@@ -6,7 +6,7 @@ export const useBridgeStore = defineStore('bridge',{
 }),
   actions:{
     async fetchBridge(){
-      const {data} = await axios.get('http://127.0.0.1:8000/api/summary/daily/report');
+      const {data} = await axios.get('/summary/daily/report');
       this.bridges = data;
       console.log(data)
     },

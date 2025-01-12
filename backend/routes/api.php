@@ -1,14 +1,15 @@
 <?php
 
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\api\Realtime\RealtimeDataController;
 use App\Http\Controllers\api\Auth\AuthController;
-use App\Http\Controllers\api\Summary\DailyReportController;
-use App\Http\Controllers\api\Summary\YearlyReportController;
-use App\Http\Controllers\api\Summary\MonthlyReportController;
 use App\Http\Controllers\api\etc\EtcSummaryController;
 use App\Http\Controllers\api\etc\MonthlyController;
+use App\Http\Controllers\api\Realtime\RealtimeDataController;
+use App\Http\Controllers\api\Summary\DailyReportController;
+use App\Http\Controllers\api\Summary\MonthlyReportController;
+use App\Http\Controllers\api\Summary\YearlyReportController;
+use App\Http\Controllers\api\GraphController;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,6 +25,9 @@ use App\Http\Controllers\api\etc\MonthlyController;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+//Graph controller
+Route::get('/graph', [GraphController::class, 'index']);
 
 // realtime data
 Route::controller(RealtimeDataController::class)->prefix('realtime')->group(function(){
